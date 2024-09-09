@@ -3,14 +3,14 @@ import os
 
 from environment import LLM
 from environment.mind.news_loader import NewsLoader
-from environment.env import Simulatio4RecSys
+from environment.env import Simulatio4RecSysMind
 from environment.users import UsersCSVLoader
 from environment.items_retrieval import (
-    SentenceSimilarityItemsRetrieval,SentenceSimilarityItemsRetrievalMind,
-    SimpleMoviesRetrieval,SimpleNewsRetrieval,
-    TimeItemsRetrieval, TimeItemsRetrievalMind
+    SentenceSimilarityItemsRetrievalMind,SimpleNewsRetrieval,
+    TimeItemsRetrievalMind
 )
-from environment.items_selection import GreedySelector
+
+from environment.items_selection import GreedySelectorMind
 from environment.reward_perturbator import GaussianPerturbatorMind, GreedyPerturbatorMind, NoPerturbatorMind
 from environment.mind.rater_prompts.our_system_prompt import (
     ThirdPersonDescriptive09_2Shot_OurSys,ThirdPersonDescriptive09_2Shot_OurSys_large,
@@ -313,7 +313,7 @@ def get_enviroment_from_args(
     """Returns the environment with the configuration specified in args."""
     if seed is None:
         seed = args.seed
-    env = Simulatio4RecSys(
+    env = Simulatio4RecSysMind(
         render_mode=render_mode,
         render_path=render_path,
         items_loader=NewsLoader(args.news_dataset),

@@ -5,7 +5,7 @@ from environment.LLM.llm import LLM
 import re
 from .third_person_descriptive_one_ten import ThirdPersonDescriptiveOneTen_OurSys
 
-from environment.memory import UserMovieInteraction,UserNewsInteraction
+from environment.memory import UserNewsInteraction
 from environment.mind import News, NewsLoader
 from environment.users import User
 
