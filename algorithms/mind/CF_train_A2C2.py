@@ -36,13 +36,13 @@ os.environ["TOKENIZERS_PARALLELISM"] = "false"
 # Define arguments
 def parse_args():
     parser = get_base_parser()
-    parser.add_argument("--model-device", type=str, default="cuda:0")
+    parser.add_argument("--model_device", type=str, default="cuda:0")
     parser.add_argument("--gamma", type=float, default=0.975)
-    parser.add_argument("--embedding-dim", type=int, default=32)
-    parser.add_argument("--learning-rate", type=float, default=0.01)
+    parser.add_argument("--embedding_dim", type=int, default=32)
+    parser.add_argument("--learning_rate", type=float, default=0.01)
 
     parser.add_argument(
-        '--news-dataset', 
+        '--news_dataset', 
         choices=['mind_dataset', 'small_mind_dataset'], 
         help='Specify the news dataset to use',
         default='small_mind_dataset'

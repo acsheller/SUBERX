@@ -265,27 +265,26 @@ def get_reward_shaping(name, seed):
 def get_base_parser():
     parser = argparse.ArgumentParser()
     parser.add_argument(
-        "--llm-model",
+        "--llm_model",
         type=str,
         default="TheBloke/Llama-2-7b-Chat-GPTQ",
         choices=LLM.SUPPORTED_MODELS,
     )
-
     parser.add_argument(
-        "--llm-rater",
+        "--llm_rater",
         type=str,
         default="2Shot_system_our",
         choices=OPTIONS_LLM_RATER,
     )
     parser.add_argument(
-        "--items-retrieval",
+        "--items_retrieval",
         type=str,
         default="last_3",
         choices=OPTIONS_ITEMS_RETRIEVAL,
     )
 
     parser.add_argument(
-        "--user-dataset",
+        "--user_dataset",
         type=str,
         default="mind",
         choices=OPTIONS_USER_DATASET,
@@ -297,12 +296,11 @@ def get_base_parser():
         choices=OPTIONS_REWARD_PERTURBATOR,
     )
     parser.add_argument(
-        "--reward-shaping",
+        "--reward_shaping",
         type=str,
         default="exp_decay_time",
         choices=OPTIONS_REWARD_SHAPING,
     )
-
     parser.add_argument("--seed", type=int, default=42)
     return parser
 
@@ -311,6 +309,7 @@ def get_enviroment_from_args(
     llm, args, seed=None, render_mode=None, render_path=None, eval_mode=False
 ):
     """Returns the environment with the configuration specified in args."""
+
     if seed is None:
         seed = args.seed
     env = Simulatio4RecSysMind(
@@ -318,7 +317,7 @@ def get_enviroment_from_args(
         render_path=render_path,
         items_loader=NewsLoader(args.news_dataset),
         users_loader=get_user_dataset(args.user_dataset),
-        items_selector=GreedySelector(seed),
+        items_selector=GreedySelectorMind(seed),
         reward_perturbator=get_reward_perturbator(args.perturbator, seed),
         items_retrieval=get_items_retrieval(args.items_retrieval),
         llm_rater=get_llm_rater(

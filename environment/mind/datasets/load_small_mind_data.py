@@ -8,7 +8,11 @@ import time
 import ast
 
 # Define paths to the MIND large dataset
-base_path_small = os.path.expanduser('~/efs/resources/datasets/mind_small_recsys_splits/')
+## This is the original dataset path
+#base_path_small = os.path.expanduser('~/efs/resources/datasets/mind_small_recsys_splits/')
+
+## This is a temporary dataset path.  TODO Implement config file with this in it.
+base_path_small = os.path.expanduser('~/datasets/small_mind/')
 train_path_small = os.path.join(base_path_small, 'train')
 dev_path_small = os.path.join(base_path_small, 'validation_dev')
 test_path_small = os.path.join(base_path_small, 'test')
@@ -38,7 +42,7 @@ def load_data_small(file_path, column_names):
 def load_embeddings_small(path):
     # Read the embeddings file with pandas
     df = pd.read_csv(path, sep='\t', header=None)
-    # TODO Review Wikidata and remove.
+    # TODO Review Wikidata and consider removing remove.
     # Assuming the first column is the WikidataId and the rest are embeddings
     wikidata_ids = df.iloc[:, 0].values
     embeddings = df.iloc[:, 1:].values
